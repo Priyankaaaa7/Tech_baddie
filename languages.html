@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Language Filter - Tech Baddie</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-image: url("kitty5.jpg");
+        background-size: cover;
+        color: #333;
+      }
+      h1 {
+        color: #ff69b4;
+      }
+      .filter-container {
+        margin: 20px;
+      }
+      select,
+      .result {
+        font-size: 1rem;
+        padding: 10px;
+        margin: 10px 0;
+        border: 2px solid #ff69b4;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+      .result {
+        display: none;
+        text-align: left;
+        margin: 20px auto;
+        width: 60%;
+        padding: 10px;
+        background-color: #fff5f7;
+        border: 1px solid #ff69b4;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tech Baddie - Language Filter</h1>
+    <div class="filter-container">
+      <label for="language">Select a Language:</label>
+      <select id="language" onchange="filterCategories()">
+        <option value="">-- Select a Language --</option>
+        <option value="python">Python</option>
+        <option value="java">Java</option>
+        <option value="javascript">JavaScript</option>
+        <option value="c">C</option>
+        <option value="cpp">C++</option>
+        <option value="sql">SQL</option>
+        <option value="php">PHP</option>
+      </select>
+    </div>
+
+    <div class="result" id="result">
+      <h3>Recommended Categories:</h3>
+      <ul id="categoryList"></ul>
+    </div>
+
+    <script>
+      const categoriesByLanguage = {
+        python: [
+          "Machine Learning",
+          "Data Science",
+          "AI",
+          "Automation Testing",
+          "Backend Development",
+        ],
+        java: [
+          "Mobile Development",
+          "Enterprise Software Development",
+          "Game Development",
+        ],
+        javascript: [
+          "Frontend Development",
+          "Full-Stack Development",
+          "Web Development",
+        ],
+        c: ["Embedded Systems", "Operating Systems", "Game Development"],
+        cpp: [
+          "Game Development",
+          "High-Performance Computing",
+          "Embedded Systems",
+        ],
+        sql: ["Database Administration", "Data Analytics", "Data Science"],
+        php: ["Web Development", "Backend Development"],
+      };
+
+      function filterCategories() {
+        const selectedLanguage = document.getElementById("language").value;
+        const resultDiv = document.getElementById("result");
+        const categoryList = document.getElementById("categoryList");
+
+        // Clear the previous results
+        categoryList.innerHTML = "";
+
+        if (selectedLanguage && categoriesByLanguage[selectedLanguage]) {
+          const categories = categoriesByLanguage[selectedLanguage];
+          categories.forEach((category) => {
+            const li = document.createElement("li");
+            li.textContent = category;
+            categoryList.appendChild(li);
+          });
+          resultDiv.style.display = "block"; // Show the result div
+        } else {
+          resultDiv.style.display = "none"; // Hide the result div if nothing is selected
+        }
+      }
+    </script>
+  </body>
+</html>

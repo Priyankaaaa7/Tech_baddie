@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hobby Filter - Tech Baddie</title>
+    <style>
+      body {
+        font-family: "Poppins", sans-serif;
+        margin: 0;
+        padding: 0;
+        text-align: center;
+        background-image: url("kitty7.jpg");
+        background-size: cover;
+        color: #333;
+      }
+      h1 {
+        color: #ff69b4;
+      }
+      .filter-container {
+        margin: 20px;
+      }
+      select,
+      .result {
+        font-size: 1rem;
+        padding: 10px;
+        margin: 10px 0;
+        border: 2px solid #ff69b4;
+        border-radius: 5px;
+        background-color: #fff;
+      }
+      .result {
+        display: none;
+        text-align: left;
+        margin: 20px auto;
+        width: 60%;
+        padding: 10px;
+        background-color: #fff5f7;
+        border: 1px solid #ff69b4;
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Tech Baddie - Hobby Filter</h1>
+    <div class="filter-container">
+      <label for="hobby">Select a Hobby:</label>
+      <select id="hobby" onchange="filterByHobby()">
+        <option value="">-- Select a Hobby --</option>
+        <option value="gaming">Gaming</option>
+        <option value="writing">Writing</option>
+        <option value="design">Design</option>
+        <option value="math">Math/Problem Solving</option>
+        <option value="photography">Photography/Editing</option>
+        <option value="exploring">Exploring Gadgets/Tech</option>
+        <option value="teaching">Teaching/Helping Others</option>
+      </select>
+    </div>
+
+    <div class="result" id="result">
+      <h3>Recommended Tech Fields:</h3>
+      <ul id="fieldList"></ul>
+    </div>
+
+    <script>
+      const fieldsByHobby = {
+        gaming: [
+          "Game Development",
+          "Virtual Reality (VR)",
+          "AI in Gaming",
+          "High-Performance Computing",
+        ],
+        writing: [
+          "Technical Writing",
+          "Content Development for Tech",
+          "Documentation Specialist",
+        ],
+        design: [
+          "UI/UX Design",
+          "Frontend Development",
+          "Graphic Design",
+          "Web Development",
+        ],
+        math: [
+          "Data Science",
+          "Machine Learning",
+          "Cybersecurity",
+          "Algorithm Development",
+        ],
+        photography: [
+          "Augmented Reality (AR)",
+          "Image Processing",
+          "Media Tech",
+          "UI/UX Design",
+        ],
+        exploring: [
+          "IoT (Internet of Things)",
+          "Robotics",
+          "Hardware Development",
+          "Embedded Systems",
+        ],
+        teaching: [
+          "EdTech Development",
+          "AI in Education",
+          "Backend Development for Learning Platforms",
+        ],
+      };
+
+      function filterByHobby() {
+        const selectedHobby = document.getElementById("hobby").value;
+        const resultDiv = document.getElementById("result");
+        const fieldList = document.getElementById("fieldList");
+
+        // Clear the previous results
+        fieldList.innerHTML = "";
+
+        if (selectedHobby && fieldsByHobby[selectedHobby]) {
+          const fields = fieldsByHobby[selectedHobby];
+          fields.forEach((field) => {
+            const li = document.createElement("li");
+            li.textContent = field;
+            fieldList.appendChild(li);
+          });
+          resultDiv.style.display = "block"; // Show the result div
+        } else {
+          resultDiv.style.display = "none"; // Hide the result div if nothing is selected
+        }
+      }
+    </script>
+  </body>
+</html>
